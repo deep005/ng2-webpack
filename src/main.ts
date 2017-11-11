@@ -1,12 +1,11 @@
-// import 'core-js/es6';
-import 'core-js/es7/reflect';
+import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
 
-require('zone.js/dist/zone');
+import { AppModule } from './app/app.module';
 
-if (process.env.ENV === 'production') {
-    // Production
-} else {
-    // Development and test
-    Error['stackTraceLimit'] = Infinity;
-    require('zone.js/dist/long-stack-trace-zone');
+// Enables HMR
+declare var module: any;
+if (module.hot) {
+    module.hot.accept();
 }
+
+platformBrowserDynamic().bootstrapModule(AppModule);
